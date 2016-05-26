@@ -3,44 +3,23 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Document</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		.btn{
+			width: 100px;
+		}
+	</style>
 	<script src="lib/angular.js"></script>
-	<script>
-		angular.module("app",[])
-		angular.module("app")
-		.controller("heroController", function($scope,heroFactory){
-			function successFun(d,s,x){
-				$scope.data = d;
-			}
-			function errorFun(m,s,x){
-				alert(m)
-			}
-			heroFactory.hd.success(successFun).error(errorFun);
-		});
-		angular.module("app").factory("heroFactory", function($http){
-			return {
-				hd : $http.get("data/data.json")
-			}
-		})
-	</script>
+	<script src="lib/angular-route.js"></script>
+	<script src="heroapp/modules/app.js"></script>
+	<script src="heroapp/config/routeconfig.js"></script>
+	<script src="heroapp/controllers/herocontroller.js"></script>
+	<script src="heroapp/controllers/moviecontroller.js"></script>
+	<script src="heroapp/services/herofactory.js"></script>
 </head>
 <body ng-app="app" ng-controller="heroController">
-	<table border="1" >
-		<tr>
-			<th>Sl #</th>
-			<th>Title</th>
-			<th>Poster</th>
-			<th>City</th>
-			<th>Power</th>
-			<th>Movies Acted</th>
-		</tr>
-		<tr ng-repeat="hero in data.heros">
-			<td>{{ hero.id }}</td>
-			<td>{{ hero.title }}</td>
-			<td>{{ hero.photo }}</td>
-			<td>{{ hero.city }}</td>
-			<td>{{ hero.power }}</td>
-			<td><a href="#/{{hero.title}}">{{ hero.movieslist.length }}</a></td>
-		</tr>
-	</table>
+	<h1>Welcome to the Hero App</h1>
+	<ng-view></ng-view>
 </body>
 </html>

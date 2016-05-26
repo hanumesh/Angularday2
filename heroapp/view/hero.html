@@ -1,0 +1,18 @@
+<table class="table">
+		<tr>
+			<th>Sl #</th>
+			<th>Title</th>
+			<th>Poster</th>
+			<th>City</th>
+			<th>Power</th>
+			<th>Movies Acted</th>
+		</tr>
+		<tr ng-repeat="hero in data.heros">
+			<td>{{ hero.id }}</td>
+			<td>{{ hero.title }}</td>
+			<td><img class="img-thumbnail" ng-src="{{ hero.photo }}" align="absmiddle" width="50" /></td>
+			<td>{{ hero.city }}</td>
+			<td><input type="range" ng-value="{{ hero.power }}" min="0" max="10" /></td>
+			<td><a class="btn btn-primary" href="#/movies/{{ hero.title|lowercase }}">{{ hero.movieslist.length }}</a></td>
+		</tr>
+	</table>
