@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="lib/angular.js"></script>
+	<script src="lib/angular-route.js"></script>
+	<script src="module/app.js"></script>
+	<script src="config/router.js"></script>
+	<script src="controllers/batcontroller.js"></script>
+	<script src="controllers/homecontroller.js"></script>
+	<script src="controllers/ironcontroller.js"></script>
+	<script src="controllers/phantomcontroller.js"></script>
+	<script src="controllers/spidercontroller.js"></script>
+	<script src="controllers/supercontroller.js"></script>
+</head>
+<body ng-app="app">
+	<div class="box" ng-include="'template/nav.html'"></div>
+	<hr/>
+	<ng-view></ng-view>
+</body>
+</html>

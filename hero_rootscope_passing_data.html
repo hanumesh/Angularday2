@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="lib/angular.js"></script>
+	<style>
+		h1{
+			width: 400px;
+			height: 200px;
+			margin: 20px auto;
+			background-color: silver;
+		}
+	</style>
+	<script>
+		angular.module("app",[])
+		.controller("firstController", function($scope, $rootScope){
+			$scope.compname = "Synechron";
+			$rootScope.prop = $scope.compname;
+			$rootScope.hc = 5;
+		})
+		.controller("secondController", function($scope, $rootScope){
+			$scope.compname = $rootScope.prop;
+		})
+	</script>
+</head>
+<body ng-app="app">
+	<h1 ng-controller="firstController">
+		{{compname}}
+		<input type="number" ng-model="$root.hc" min="10" max="1000" />
+		<hr />
+		<span>{{ $root.hc }}</span>
+	</h1>
+	<h1 ng-controller="secondController">
+		{{compname}}
+		<hr />
+		<span>{{ $root.hc }}</span>
+	</h1>
+</body>
+</html>

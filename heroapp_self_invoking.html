@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="lib/angular.js"></script>
+	<script src="lib/angular-route.js"></script>
+	<script>
+		//------------------------------------------
+		(function(){
+		angular.module("app",["ngRoute"]);
+		}());
+		//------------------------------------------
+		(function(){
+		function homecontrollerfun(){
+			this.hero = { title : 'Welcome to Synechron'};
+		};
+		angular.module("app").controller("homecontroller", homecontrollerfun);
+		}());
+
+		//------------------------------------------
+		(function(){
+		function batcontrollerfun(){
+		this.hero = { title : 'Batman',	fname : 'Bruce', lname : 'Wayne', 	city : 'Gotham', 		power : 7,  price : 876.45678, releasedate : '2016-03-30',  photo: 'images/batman.jpg'};
+		};
+		angular.module("app").controller("batcontroller", batcontrollerfun);
+		}());
+		//------------------------------------------
+
+		(function(){
+		function supercontrollerfun($scope){
+		$scope.hero = { title : 'Superman',	fname : 'Clark', lname : 'Kent', 	city : 'Metropolis', 	power : 8,  price : 940.64578, releasedate : '2016-03-27',  photo: 'images/superman.jpg'};
+		}
+
+		angular.module("app").controller("supercontroller", supercontrollerfun);
+		}());
+
+		//------------------------------------------
+		(function(){
+		function spidercontrollerfun($scope){
+		$scope.hero = { title : 'Spiderman', fname : 'Peter', lname : 'Parker', 	city : 'New york', 		power : 7,  price : 750.46758, releasedate : '2016-03-23',  photo: 'images/spiderman.jpg'};
+		}
+		angular.module("app").controller("spidercontroller",spidercontrollerfun );
+		}());
+		//------------------------------------------
+
+		(function(){
+		function ironcontrollerfun($scope){
+		$scope.hero = { title : 'Ironman',	fname : 'Tony',  lname : 'Stark', 	city : 'New york', 		power : 7,  price : 450.54678, releasedate : '2016-03-24',  photo: 'images/ironman.jpg'};
+		}
+		angular.module("app").controller("ironcontroller",ironcontrollerfun );
+		}());
+		//------------------------------------------
+
+		(function(){
+		function phantomcontrollerfun($scope){
+		$scope.hero = { title : 'Phantom',	fname : 'Kit',   lname : 'Walker', 	city : 'Bhangala', 		power : 6,  price : 320.74568, releasedate : '2016-03-19',  photo: 'images/phantom.jpg'};
+		}
+		angular.module("app").controller("phantomcontroller", phantomcontrollerfun);
+		}());
+		//------------------------------------------
+
+		(function(){
+
+		angular.module("app").config(function($routeProvider){
+		$routeProvider
+		.when("/",{
+		controller : "homecontroller",
+		controllerAs : "home",
+		template : "<h1> {{ home.hero.title }} </h1>"
+		})
+		.when("/batman",{
+		controllerAs : "batcontroller as bat",
+		template : "<h1> {{ bat.hero.title }} </h1>"
+		})
+		.when("/superman",{
+		controller : "supercontroller",
+		template : "<h1> {{ hero.title }} </h1>"
+		})
+		.when("/spiderman",{
+		controller : "spidercontroller",
+		template : "<h1> {{ hero.title }} </h1>"
+		})
+		.when("/ironman",{
+		controller : "ironcontroller",
+		template : "<h1> {{ hero.title }} </h1>"
+		})
+		.when("/phantom",{
+		controller : "phantomcontroller",
+		template : "<h1> {{ hero.title }} </h1>"
+		})
+		.otherwise({
+		redirectTo : "/"
+		})
+		});
+		}())
+	</script>
+</head>
+<body ng-app="app">
+	<ul>
+		<li><a href="#/">Home</a></li>
+		<li><a href="#/batman">Batman</a></li>
+		<li><a href="#/superman">Superman</a></li>
+		<li><a href="#/spiderman">Spiderman</a></li>
+		<li><a href="#/ironman">Ironman</a></li>
+		<li><a href="#/phantom">Phantom</a></li>
+		<li><a href="#/notfound">Not Found</a></li>
+	</ul>
+	<hr/>
+	<ng-view></ng-view>
+</body>
+</html>
