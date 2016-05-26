@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="lib/angular.js"></script>
+	<script>
+		angular.module("app",[])
+		angular.module("app")
+		.controller("heroController", function($scope,heroFactory){
+			function successFun(d,s,x){
+				$scope.data = d;
+			}
+			function errorFun(m,s,x){
+				alert(m)
+			}
+			heroFactory.hd.success(successFun).error(errorFun);
+		});
+		angular.module("app").factory("heroFactory", function($http){
+			return {
+				hd : $http.get("data/data.json")
+			}
+		})
+	</script>
+</head>
+<body ng-app="app" ng-controller="heroController">
+	<table border="1" >
+		<tr>
+			<th>Sl #</th>
+			<th>Title</th>
+			<th>Poster</th>
+			<th>City</th>
+			<th>Power</th>
+			<th>Movies Acted</th>
+		</tr>
+		<tr ng-repeat="hero in data.heros">
+			<td>{{ hero.id }}</td>
+			<td>{{ hero.title }}</td>
+			<td>{{ hero.photo }}</td>
+			<td>{{ hero.city }}</td>
+			<td>{{ hero.power }}</td>
+			<td><a href="#/{{hero.title}}">{{ hero.movieslist.length }}</a></td>
+		</tr>
+	</table>
+</body>
+</html>

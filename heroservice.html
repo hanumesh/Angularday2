@@ -7,12 +7,13 @@
 	<script>
 	
 		angular.module("app",[])
-		.controller("herocontroller", function($scope, myfactory){
-			$scope.data = myfactory.hd
+		.controller("herocontroller", function($scope, myservice){
+			$scope.data = myservice.heros
+			//console.log (myservice)
 		})
 					
-		.factory('myfactory', function(){
-		var heros = [
+		.service('myservice', function(){
+		this.heros = [
 			        {
 			            "id": 1,
 			            "movies": 3,
@@ -128,10 +129,7 @@
 			                }
 			            ]
 			        }
-			    ];
-			return {
-				hd : heros
-			};
+			    ];	
 		});
 		
 	</script>

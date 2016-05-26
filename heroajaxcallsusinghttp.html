@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="lib/angular.js"></script>
+	<script>
+		angular.module("app",[])
+		.controller("herocontroller", function($scope,myservice){
+			/*
+			myfactory.hd.success(function(data,status,jqxhr){
+				$scope.data = data.heros;
+				console.log(jqxhr())
+			})
+			 */
+			
+			function successFun(d,s,x){
+				$scope.data = d.data.heros;
+			}
+			function failFun(message,status,jqxhr){
+				alert(message);
+			}
+			function defaultFun(){
+				alert("done");
+			}
+			// myfactory.hd.success(successFun).error(failFun);
+			
+			myservice.heros.then(successFun,failFun,defaultFun);
+		})
+		.service("myservice", function($http){
+			this.heros = $http.get("data/data.json");
+		});
+		/*
+		.factory("myfactory", function($http){
+			var heros = $http.get("data/data.json");
+			return {
+				hd : heros
+			};
+		});
+		 */
+	 
+	</script>
+</head>
+<body ng-app="app">
+	<div class="box" ng-controller="herocontroller">
+		<ul>
+			<li ng-repeat="hero in data">{{ hero.title }}</li>
+		</ul>
+	</div>
+</body>
+</html>
